@@ -1,4 +1,4 @@
-# test_neostack
+# test_neostack - временной слайдер на vue с использованием jquery
 
 Инструкция к запуску
 

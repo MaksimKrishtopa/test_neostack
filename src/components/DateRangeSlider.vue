@@ -1,5 +1,9 @@
 <template>
   <div>
+      <div class="tabs">
+      <button @click="changeTab('years')" :class="{ 'active': activeTab === 'years' }">Years</button>
+      <button @click="changeTab('months')" :class="{ 'active': activeTab === 'months' }">Months</button>
+    </div>
     <div v-if="activeTab === 'years'">
       <div class="slider-container">
         <div id="slider-range-years"></div>
@@ -22,10 +26,7 @@
       </div>
 
     </div>
-    <div class="tabs">
-      <button @click="changeTab('years')" :class="{ 'active': activeTab === 'years' }">Years</button>
-      <button @click="changeTab('months')" :class="{ 'active': activeTab === 'months' }">Months</button>
-    </div>
+
   </div>
 </template>
 
@@ -187,7 +188,7 @@ export default {
 .tabs {
   display: flex;
   justify-content: center;
-  margin-top: 75px;
+  margin-bottom: 50px;
   align-items: flex-start;
 }
 .tabs button {
@@ -206,6 +207,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin: 15px 0 10px 0;
+  flex-wrap: wrap; /* Добавлено для переноса на вторую строку при необходимости */
 }
 
 .months span {
@@ -244,13 +246,15 @@ export default {
   display: flex;
   justify-content: space-between;
   padding-top: 15px; 
+  flex-wrap: wrap; /* Добавлено для переноса на вторую строку при необходимости */
 }
 
 .month-scale-item {
   flex: 1;
   text-align: center;
   border-left: 1px solid #ccc; 
-  border-right: 1px solid #ccc; 
+  border-right: 1px solid #ccc;
+  margin-bottom: 5px; /* Добавлено для отступа между элементами */
 }
 
 .year-scale {
@@ -267,5 +271,30 @@ export default {
   border-right: 1px solid #ccc; 
 }
 
+/* Адаптивные стили */
+@media only screen and (max-width: 1100px) {
+  .year-scale-item, .month-scale-item {
+    flex: 0 0 calc(25% - 10px); /* Четыре элемента в строке с отступами между ними */
+    margin-bottom: 10px; /* Добавлено для отступа между строками */
+  }
+}
 
+@media only screen and (max-width: 600px) {
+  .tabs {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .tabs button {
+    margin-bottom: 10px;
+  }
+
+  .year-scale, .month-scale {
+    flex-wrap: wrap;
+  }
+
+  .year-scale-item, .month-scale-item {
+    flex: 0 0 100%;
+  }
+}
 </style>
