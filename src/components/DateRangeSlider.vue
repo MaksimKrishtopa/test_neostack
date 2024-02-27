@@ -89,6 +89,11 @@ export default {
         },
       });
     },
+        formatYearMonth(value) {
+      const year = Math.floor(value);
+      const month = Math.round((value - year) * 12);
+      return `${year} ${this.getMonthName(month)}`;
+    },
   }
 };
 </script>
