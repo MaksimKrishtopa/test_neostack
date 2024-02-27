@@ -130,7 +130,7 @@ export default {
       this.initializeSliders(); 
     },
 
-        updateScales() {
+    updateScales() {
       this.yearScale = Array.from({ length: this.selectedEndYear - this.selectedStartYear + 1 }, (_, index) => this.selectedStartYear + index);
       this.monthScale = this.generateMonthScale();
     },
@@ -164,6 +164,108 @@ export default {
 </script>
 
 <style scoped>
+.date-range-slider {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.slider-wrapper {
+  position: relative;
+}
+
+.slider {
+  width: 100%;
+}
+
+.month-scale-item {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+}
+
+.tabs {
+  display: flex;
+  justify-content: center;
+  margin-top: 75px;
+  align-items: flex-start;
+}
+.tabs button {
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: #eee;
+  border: none;
+  outline: none;
+}
+
+.tabs button.active {
+  background-color: #ccc;
+}
+
+.months {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 10px 0;
+}
+
+.months span {
+  flex: 1;
+  text-align: center;
+}
+
+.start-tooltip,
+.end-tooltip {
+  background-color: #2196f3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.slider-container {
+  position: relative;
+}
+
+.tooltip {
+  position: absolute;
+  background-color: #2196f3;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  text-align: center;
+  bottom: 70px;
+}
+
+.end-tooltip {
+  right: 0;
+}
+
+.month-scale {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 15px; 
+}
+
+.month-scale-item {
+  flex: 1;
+  text-align: center;
+  border-left: 1px solid #ccc; 
+  border-right: 1px solid #ccc; 
+}
+
+.year-scale {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 25px;
+}
+
+.year-scale-item {
+  flex: 1;
+  text-align: center;
+  font-size: 12px;
+  border-left: 1px solid #ccc; 
+  border-right: 1px solid #ccc; 
+}
 
 
 </style>
