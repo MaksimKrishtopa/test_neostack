@@ -129,6 +129,36 @@ export default {
       this.updateScales();
       this.initializeSliders(); 
     },
+
+        updateScales() {
+      this.yearScale = Array.from({ length: this.selectedEndYear - this.selectedStartYear + 1 }, (_, index) => this.selectedStartYear + index);
+      this.monthScale = this.generateMonthScale();
+    },
+    generateMonthScale() {
+      const months = [];
+      const totalMonths = (this.selectedEndYear - this.selectedStartYear + 1) * 12;
+      const fontSizeFactor = totalMonths <= 36 ? 12 : (totalMonths <= 60 ? 10 : 8);
+
+      for (let year = this.selectedStartYear; year <= this.selectedEndYear; year++) {
+        months.push({ index: year, name: year, fontSize: fontSizeFactor });
+
+        for (let month = 0; month < 12; month++) {
+          const index = (year - this.selectedStartYear) * 12 + month;
+          const fontSize = fontSizeFactor;
+          months.push({ index, name: this.getMonthName(month), fontSize });
+        }
+      }
+      return months;
+    },
+
+
+    getMonthName(index) {
+      const monthNames = [
+        'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл',
+        'Авг', 'Сен', 'Окт', 'Ноя', 'Дек',
+      ];
+      return monthNames[index];
+    },
   }
 };
 </script>
