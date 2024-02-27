@@ -23,5 +23,11 @@ export default {
     };
   },
 
+    methods: {
+    handleRangeUpdate({ startYear, endYear }) {
+      console.log(`Selected range: ${startYear} - ${endYear}`);
+     },
+  },
+
 };
 </script>

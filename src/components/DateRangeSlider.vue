@@ -33,12 +33,63 @@
 export default {
   data() {
     return {
-
+      activeTab: localStorage.getItem('activeTab') || 'years',
+      selectedStartYear: parseInt(localStorage.getItem('selectedStartYear')) || 2014,
+      selectedEndYear: parseInt(localStorage.getItem('selectedEndYear')) || 2021,
+      selectedMonth: '',
+      yearScale: [],
+      monthScale: [],
+      selectedStartMonth: localStorage.getItem('selectedStartMonth') || '',
+      selectedEndMonth: localStorage.getItem('selectedEndMonth') || '',
     };
   },
+  watch: {
+    activeTab: 'initializeSliders',
+  },
+  mounted() {
+    
+    if (!localStorage.getItem('activeTab')) {
+      localStorage.setItem('activeTab', 'years');
+    }
+    this.activeTab = localStorage.getItem('activeTab') || 'years';
 
+    this.updateScales();
+    this.initializeSliders();
+  },
+  methods: {
+    initializeSliders() {
+      this.$nextTick(() => {
+        if (this.activeTab === 'years') {
+          this.initializeYearSlider();
+        } else {
+          this.initializeMonthSlider();
+        }
+      });
+    },
+    initializeYearSlider() {
+      const self = this;
 
+      $("#slider-range-years").slider({
+        range: true,
+        min: 2014,
+        max: 2021,
+        values: [self.selectedStartYear, self.selectedEndYear],
+        step: 1/12, 
+        slide: function (event, ui) {
+          self.selectedStartYear = ui.values[0];
+          self.selectedEndYear = ui.values[1];
 
+          localStorage.setItem('selectedStartYear', self.selectedStartYear);
+          localStorage.setItem('selectedEndYear', self.selectedEndYear);
+        },
+        change: function (event, ui) {
+          
+          $(".start-tooltip").text(`${self.formatYearMonth(ui.values[0])}`);
+          $(".end-tooltip").text(`${self.formatYearMonth(ui.values[1])}`);
+        },
+      });
+    },
+  }
 };
 </script>
 
