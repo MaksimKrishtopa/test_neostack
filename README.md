@@ -1,19 +1,34 @@
 # test_neostack
 
-## Project setup
-```
-npm install
-```
+Инструкция к запуску
 
-### Compiles and hot-reloads for development
-```
+Установите Node.js и npm:
+
+Если у вас их еще нет, установите Node.js и npm, следуя инструкциям на официальном сайте Node.js.
+
+Создайте новый проект Vue.js:
+
+Откройте терминал и выполните следующую команду для создания нового проекта Vue.js с использованием Vue CLI:
+
+npm install -g @vue/cli
+Затем следуйте инструкциям по установке, выбирая настройки по умолчанию или ваши предпочтения, однако должны обзательно присутствовать Router и Vuex.
+
+Установите jQuery и jQuery UI:
+Выполните следующую команду для установки jQuery и jQuery UI:
+
+npm install jquery
+
+npm install jquery-ui
+
+Скорректируйте структуру папок и содержимое файлов проекта в соответствии с предоставленными мноб данными в github
+
+Запустите локальный сервер разработки через терминал:
+
 npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Это запустит локальный сервер разработки. После успешного запуска, вы увидите URL, по которому доступно ваше приложение (например, http://localhost:8080/).
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Откройте приложение в браузере:
+
+Откройте ваш браузер и перейдите по указанному URL (например, http://localhost:8080/).
+
