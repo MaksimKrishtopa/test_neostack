@@ -109,8 +109,8 @@ export default {
           const startMonth = new Date(ui.values[0]);
           const endMonth = new Date(ui.values[1]);
           const monthNames = [
-            'January', 'February', 'March', 'April', 'May', 'June', 'July',
-            'August', 'September', 'October', 'November', 'December',
+            'Янв', 'Фев', 'Мар', 'Апр', 'Май', 'Июн', 'Июл',
+            'Авг', 'Сен', 'Окт', 'Ноя', 'Дек',
           ];
           self.selectedStartMonth = `${monthNames[startMonth.getMonth()]} ${startMonth.getFullYear()}`;
           self.selectedEndMonth = `${monthNames[endMonth.getMonth()]} ${endMonth.getFullYear()}`;
