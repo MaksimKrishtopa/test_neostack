@@ -94,6 +94,41 @@ export default {
       const month = Math.round((value - year) * 12);
       return `${year} ${this.getMonthName(month)}`;
     },
+
+        initializeMonthSlider() {
+      const self = this;
+      $("#slider-range-months").slider({
+        range: true,
+        min: new Date(self.selectedStartYear, 0).getTime(),
+        max: new Date(self.selectedEndYear, 11).getTime(),
+        values: [
+          new Date(self.selectedStartYear, 0).getTime(),
+          new Date(self.selectedEndYear, 11).getTime(),
+        ],
+        slide: function (event, ui) {
+          const startMonth = new Date(ui.values[0]);
+          const endMonth = new Date(ui.values[1]);
+          const monthNames = [
+            'January', 'February', 'March', 'April', 'May', 'June', 'July',
+            'August', 'September', 'October', 'November', 'December',
+          ];
+          self.selectedStartMonth = `${monthNames[startMonth.getMonth()]} ${startMonth.getFullYear()}`;
+          self.selectedEndMonth = `${monthNames[endMonth.getMonth()]} ${endMonth.getFullYear()}`;
+
+          localStorage.setItem('selectedStartMonth', self.selectedStartMonth);
+          localStorage.setItem('selectedEndMonth', self.selectedEndMonth);
+
+          $(".start-tooltip").text(self.selectedStartMonth);
+          $(".end-tooltip").text(self.selectedEndMonth);
+        },
+      });
+    },
+    changeTab(tab) {
+      this.activeTab = tab;
+      localStorage.setItem('activeTab', tab);
+      this.updateScales();
+      this.initializeSliders(); 
+    },
   }
 };
 </script>
